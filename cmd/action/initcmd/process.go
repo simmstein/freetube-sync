@@ -11,7 +11,7 @@ import (
 
 func Process(name, route string, data any) bool {
 	log.Print("Init of " + name)
-	response, err := client.Init(route, data)
+	response, err := client.InitPush(route, data)
 	res := true
 
 	if err != nil {

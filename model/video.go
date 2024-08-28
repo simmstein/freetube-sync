@@ -1,19 +1,41 @@
 package model
 
-type Video struct {
-	VideoId                  string `json:"videoId"`
-	Title                    string `json:"title"`
-	Author                   string `json:"author"`
-	AuthorId                 string `json:"authorId"`
-	Published                uint64 `json:"published"`
-	Description              string `json:"description"`
-	ViewCount                uint64 `json:"viewCount"`
-	LengthSeconds            uint64 `json:"lengthSeconds"`
-	WatchProgress            uint64 `json:"watchProgress"`
-	TimeWatched              uint64 `json:"timeWatched"`
-	LsLive                   bool   `json:"isLive"`
-	Type                     string `json:"type"`
-	Id                       string `json:"_id"`
-	LastViewedPlaylistType   string `json:"lastViewedPlaylistType"`
-	LastViewedPlaylistItemId string `json:"lastViewedPlaylistItemId"`
+import (
+	"time"
+)
+
+type WatchedVideo struct {
+	ID        uint       `json:"-";gorm:"primary_key"`
+	DeletedAt *time.Time `json:"-";sql:"index"`
+
+	VideoId                  string  `json:"videoId"`
+	Title                    string  `json:"title"`
+	Author                   string  `json:"author"`
+	AuthorId                 string  `json:"authorId"`
+	Published                uint64  `json:"published"`
+	Description              string  `json:"description"`
+	ViewCount                uint64  `json:"viewCount"`
+	LengthSeconds            uint64  `json:"lengthSeconds"`
+	WatchProgress            uint64  `json:"watchProgress"`
+	TimeWatched              uint64  `json:"timeWatched"`
+	IsLive                   bool    `json:"isLive"`
+	Type                     string  `json:"type"`
+	Id                       string  `json:"_id"`
+	LastViewedPlaylistType   string  `json:"lastViewedPlaylistType"`
+	LastViewedPlaylistItemId *string `json:"lastViewedPlaylistItemId"`
+}
+
+type PlaylistVideo struct {
+	ID        uint       `gorm:"primary_key"`
+	DeletedAt *time.Time `json:"-";sql:"index"`
+
+	PlaylistID     uint
+	VideoId        string `json:"videoId"`
+	Title          string `json:"title"`
+	AuthorId       string `json:"authorId"`
+	LengthSeconds  uint64 `json:"lengthSeconds"`
+	TimeWatched    uint64 `json:"timeWatched"`
+	TimeAdded      uint64 `json:"timeAdded"`
+	PlaylistItemId string `json:"playlistItemId"`
+	Type           string `json:"type"`
 }

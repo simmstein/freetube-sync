@@ -2,46 +2,26 @@ package main
 
 import (
 	"github.com/labstack/echo/v4"
-	"gitnet.fr/deblan/freetube-sync/model"
-	"gitnet.fr/deblan/freetube-sync/web/route"
+	"github.com/labstack/echo/v4/middleware"
+	config "gitnet.fr/deblan/freetube-sync/config/server"
+	"gitnet.fr/deblan/freetube-sync/store/database"
+	"gitnet.fr/deblan/freetube-sync/web/controller/history"
+	"gitnet.fr/deblan/freetube-sync/web/controller/playlist"
+	"gitnet.fr/deblan/freetube-sync/web/controller/profile"
 )
 
 func main() {
+	config.InitConfig()
+
+	database.GetManager().AutoMigrate()
+
 	e := echo.New()
+	e.HideBanner = true
+	e.Use(middleware.Logger())
 
-	e.POST(route.HistoryInit, func(c echo.Context) error {
-		payload := []model.Video{}
-		err := c.Bind(&payload)
+	history.Register(e)
+	playlist.Register(e)
+	profile.Register(e)
 
-		if err != nil {
-			return c.JSON(400, map[string]any{
-				"code":    400,
-				"message": err,
-			})
-		}
-
-		return c.JSON(201, map[string]any{
-			"code":    201,
-			"message": "ok",
-		})
-	})
-
-	e.POST(route.HistoryPush, func(c echo.Context) error {
-		payload := []model.Video{}
-		err := c.Bind(&payload)
-
-		if err != nil {
-			return c.JSON(400, map[string]any{
-				"code":    400,
-				"message": err,
-			})
-		}
-
-		return c.JSON(201, map[string]any{
-			"code":    201,
-			"message": "ok",
-		})
-	})
-
-	e.Logger.Fatal(e.Start(":1323"))
+	e.Logger.Fatal(e.Start(config.GetConfig().BindAddress))
 }

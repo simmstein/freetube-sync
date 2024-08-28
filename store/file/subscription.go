@@ -9,7 +9,7 @@ import (
 )
 
 func LoadProfiles() []model.Profile {
-	lines := file.GetLines(config.GetConfig().Path + "/profiles.db")
+	lines := file.GetLines(config.GetConfig().DbPath("profiles"))
 	collection := []model.Profile{}
 	added := make(map[string]bool)
 

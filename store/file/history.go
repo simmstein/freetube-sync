@@ -8,16 +8,20 @@ import (
 	"gitnet.fr/deblan/freetube-sync/model"
 )
 
-func LoadHistory() []model.Video {
-	lines := file.GetLines(config.GetConfig().Path + "/history.db")
-	collection := []model.Video{}
+func LoadHistory() []model.WatchedVideo {
+	lines := file.GetLines(config.GetConfig().DbPath("history"))
+	collection := []model.WatchedVideo{}
 
 	for _, line := range lines {
-		var item model.Video
+		var item model.WatchedVideo
 		json.Unmarshal([]byte(line), &item)
 
 		collection = append(collection, item)
 	}
 
 	return collection
+}
+
+func UpdateHistory(data []string) {
+	file.WriteDatabase(config.GetConfig().DbPath("history"), data)
 }

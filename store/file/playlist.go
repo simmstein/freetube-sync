@@ -9,7 +9,7 @@ import (
 )
 
 func LoadPlaylists() []model.Playlist {
-	lines := file.GetLines(config.GetConfig().Path + "/playlists.db")
+	lines := file.GetLines(config.GetConfig().DbPath("playlists"))
 	collection := []model.Playlist{}
 	added := make(map[string]bool)
 

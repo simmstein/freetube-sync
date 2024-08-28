@@ -1,12 +1,34 @@
 package watchcmd
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/fsnotify/fsnotify"
 	config "gitnet.fr/deblan/freetube-sync/config/client"
+	filestore "gitnet.fr/deblan/freetube-sync/store/file"
+	"gitnet.fr/deblan/freetube-sync/web/client"
+	"gitnet.fr/deblan/freetube-sync/web/route"
 )
+
+func Process(name, route string, data any) bool {
+	log.Print("Push of " + name)
+	response, err := client.InitPush(route, data)
+	res := true
+
+	if err != nil {
+		log.Print("Error while pushing " + name + ": " + err.Error())
+		res = false
+	} else {
+		if response.Code == 201 {
+			log.Print(name + " pushed!")
+		} else {
+			log.Print("Error while pushing " + name + ": " + response.Message)
+			res = false
+		}
+	}
+
+	return res
+}
 
 func Run() {
 	watcher, err := fsnotify.NewWatcher()
@@ -16,6 +38,7 @@ func Run() {
 	}
 
 	defer watcher.Close()
+	c := config.GetConfig()
 
 	go func() {
 		for {
@@ -26,12 +49,12 @@ func Run() {
 				}
 				if event.Has(fsnotify.Write) {
 					switch event.Name {
-					case config.GetConfig().Path + "/history.db":
-						fmt.Printf("%+v\n", "update history")
-					case config.GetConfig().Path + "/playlists.db":
-						fmt.Printf("%+v\n", "update playlists")
-					case config.GetConfig().Path + "/profiles.db":
-						fmt.Printf("%+v\n", "update profiles")
+					case c.DbPath("history"):
+						Process("history", route.HistoryPush, filestore.LoadHistory())
+					case c.DbPath("playlists"):
+						Process("playlists", route.PlaylistPush, filestore.LoadPlaylists())
+					case c.DbPath("profiles"):
+						Process("profiles", route.ProfilePush, filestore.LoadProfiles())
 					}
 				}
 			}

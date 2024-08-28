@@ -28,6 +28,10 @@ func (c *Config) Define(server, hostname, path string) {
 	c.Path = path
 }
 
+func (c *Config) DbPath(name string) string {
+	return c.Path + "/" + name + ".db"
+}
+
 func InitConfig() {
 	defaultHostname, _ := os.Hostname()
 

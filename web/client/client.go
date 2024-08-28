@@ -8,6 +8,8 @@ import (
 	"net/http"
 
 	config "gitnet.fr/deblan/freetube-sync/config/client"
+	"gitnet.fr/deblan/freetube-sync/model"
+	"gitnet.fr/deblan/freetube-sync/web/route"
 )
 
 type Data any
@@ -55,15 +57,24 @@ func Post(route string, data Data) ([]byte, error) {
 	return Request("POST", route, data)
 }
 
-func Get(route string, data Data) ([]byte, error) {
-	return Request("POST", route, data)
+func Get(route string) ([]byte, error) {
+	return Request("GET", route, nil)
 }
 
-func Init(route string, data Data) (PostResponse, error) {
+func InitPush(route string, data Data) (PostResponse, error) {
 	var value PostResponse
 
 	body, err := Post(route, data)
 	json.Unmarshal(body, &value)
 
 	return value, err
+}
+
+func PullHistory() ([]model.WatchedVideo, error) {
+	var items []model.WatchedVideo
+
+	body, err := Get(route.HistoryPull)
+	json.Unmarshal(body, &items)
+
+	return items, err
 }
