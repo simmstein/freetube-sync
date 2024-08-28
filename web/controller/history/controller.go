@@ -11,26 +11,26 @@ import (
 )
 
 func InitPush(c echo.Context) error {
-	payload := []model.WatchedVideo{}
-	err := c.Bind(&payload)
+	watchedVideos := []model.WatchedVideo{}
+	err := c.Bind(&watchedVideos)
 	manager := database.GetManager()
 
 	if err != nil {
 		return helper.Ko(c, err)
 	}
 
-	for _, item := range payload {
-		manager.Db.Where(item).FirstOrCreate(&item)
+	for _, watchedVideo := range watchedVideos {
+		manager.Db.Where(watchedVideo).FirstOrCreate(&watchedVideo)
 	}
 
 	return helper.Ok(c)
 }
 
 func Pull(c echo.Context) error {
-	entities := []model.WatchedVideo{}
+	watchedVideos := []model.WatchedVideo{}
 	manager := database.GetManager()
 
-	manager.Db.Find(&entities)
+	manager.Db.Find(&watchedVideos)
 
 	pull := model.Pull{
 		Hostname: c.Request().Header.Get("X-Machine"),
@@ -41,7 +41,7 @@ func Pull(c echo.Context) error {
 	pull.PullAt = time.Now()
 	manager.Db.Save(&pull)
 
-	return c.JSON(200, entities)
+	return c.JSON(200, watchedVideos)
 }
 
 func Register(e *echo.Echo) {

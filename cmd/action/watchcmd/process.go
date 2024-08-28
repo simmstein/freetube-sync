@@ -52,9 +52,9 @@ func Run() {
 					case c.DbPath("history"):
 						Process("history", route.HistoryPush, filestore.LoadHistory())
 					case c.DbPath("playlists"):
-						Process("playlists", route.PlaylistPush, filestore.LoadPlaylists())
+						Process("playlists", route.PlaylistsPush, filestore.LoadPlaylists())
 					case c.DbPath("profiles"):
-						Process("profiles", route.ProfilePush, filestore.LoadProfiles())
+						Process("profiles", route.ProfilesPush, filestore.LoadProfiles())
 					}
 				}
 			}

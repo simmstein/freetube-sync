@@ -2,11 +2,13 @@ package model
 
 import (
 	"time"
+
+	"gorm.io/gorm"
 )
 
 type WatchedVideo struct {
-	ID        uint       `json:"-";gorm:"primary_key"`
-	DeletedAt *time.Time `json:"-";sql:"index"`
+	ID        uint           `json:"-" gorm:"primary_key"`
+	DeletedAt gorm.DeletedAt `json:"-" sql:"index"`
 
 	VideoId                  string  `json:"videoId"`
 	Title                    string  `json:"title"`
@@ -20,14 +22,14 @@ type WatchedVideo struct {
 	TimeWatched              uint64  `json:"timeWatched"`
 	IsLive                   bool    `json:"isLive"`
 	Type                     string  `json:"type"`
-	Id                       string  `json:"_id"`
+	RemoteId                 string  `json:"_id"`
 	LastViewedPlaylistType   string  `json:"lastViewedPlaylistType"`
 	LastViewedPlaylistItemId *string `json:"lastViewedPlaylistItemId"`
 }
 
 type PlaylistVideo struct {
 	ID        uint       `gorm:"primary_key"`
-	DeletedAt *time.Time `json:"-";sql:"index"`
+	DeletedAt *time.Time `json:"-" sql:"index"`
 
 	PlaylistID     uint
 	VideoId        string `json:"videoId"`

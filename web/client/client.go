@@ -78,3 +78,21 @@ func PullHistory() ([]model.WatchedVideo, error) {
 
 	return items, err
 }
+
+func PullPlaylists() ([]model.Playlist, error) {
+	var items []model.Playlist
+
+	body, err := Get(route.PlaylistsPull)
+	json.Unmarshal(body, &items)
+
+	return items, err
+}
+
+func PullProfiles() ([]model.Profile, error) {
+	var items []model.Profile
+
+	body, err := Get(route.ProfilesPull)
+	json.Unmarshal(body, &items)
+
+	return items, err
+}

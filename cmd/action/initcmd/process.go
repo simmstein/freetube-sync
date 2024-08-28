@@ -31,8 +31,8 @@ func Process(name, route string, data any) bool {
 
 func Run() {
 	a := Process("history", route.HistoryInit, filestore.LoadHistory())
-	b := Process("playlists", route.PlaylistInit, filestore.LoadPlaylists())
-	c := Process("profiles", route.ProfileInit, filestore.LoadProfiles())
+	b := Process("playlists", route.PlaylistsInit, filestore.LoadPlaylists())
+	c := Process("profiles", route.ProfilesInit, filestore.LoadProfiles())
 
 	if a && b && c {
 		os.Exit(0)

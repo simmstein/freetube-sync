@@ -5,11 +5,11 @@ const (
 	HistoryPush = "/history/push"
 	HistoryPull = "/history/pull"
 
-	ProfileInit = "/profile/init"
-	ProfilePush = "/profile/push"
-	ProfilePull = "/profile/pull"
+	ProfilesInit = "/profiles/init"
+	ProfilesPush = "/profiles/push"
+	ProfilesPull = "/profiles/pull"
 
-	PlaylistInit = "/playlist/init"
-	PlaylistPush = "/playlist/push"
-	PlaylistPull = "/playlist/pull"
+	PlaylistsInit = "/playlists/init"
+	PlaylistsPush = "/playlists/push"
+	PlaylistsPull = "/playlists/pull"
 )

@@ -8,20 +8,24 @@ import (
 	"gitnet.fr/deblan/freetube-sync/model"
 )
 
-func LoadProfiles() []model.Profile {
-	lines := file.GetLines(config.GetConfig().DbPath("profiles"))
-	collection := []model.Profile{}
+func LoadPlaylists() []model.Playlist {
+	lines := file.GetLines(config.GetConfig().DbPath("playlists"))
+	collection := []model.Playlist{}
 	added := make(map[string]bool)
 
 	for i := len(lines) - 1; i >= 0; i-- {
-		var item model.Profile
+		var item model.Playlist
 		json.Unmarshal([]byte(lines[i]), &item)
 
-		if !added[item.Name] {
-			added[item.Name] = true
+		if !added[item.RemoteId] {
+			added[item.RemoteId] = true
 			collection = append(collection, item)
 		}
 	}
 
 	return collection
+}
+
+func UpdatePlaylists(data []string) {
+	file.WriteDatabase(config.GetConfig().DbPath("playlists"), data)
 }
