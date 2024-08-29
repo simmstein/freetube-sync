@@ -1,4 +1,4 @@
-# FreeTube Sync
+# ↕️ FreeTube Sync
 
 [FreeTube](https://freetubeapp.io/) is an open source desktop YouTube player built with privacy in mind. Use YouTube without advertisements and prevent Google from tracking you with their cookies and JavaScript. 
 
@@ -6,11 +6,11 @@ It does not require an account, all datas are on your local storage. In case of 
 
 **FreeTube Sync** tries to solve this problem.
 
-## What are requirements?
+## ⚙️ What are requirements?
 
 **FreeTube Sync** requires a server accessible by all machines running FreeTube (on a local network, through a VPN or on the web).
 
-## How does it work?
+## 🧬 How does it work?
 
 The role of the server is to store the history, the playlists and the profiles of FreeTube instances (clients).
 
@@ -39,7 +39,7 @@ sequenceDiagram
     end
 ```
 
-## How to use it?
+## 📗 How to use it?
 
 ### Server
 
