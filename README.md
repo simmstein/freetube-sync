@@ -1,7 +1,5 @@
 ![](https://deblan.gitnet.page/freetube-sync/logo.svg)
 
-# FreeTube Sync
-
 [FreeTube](https://freetubeapp.io/) is an open source desktop YouTube player built with privacy in mind. Use YouTube without advertisements and prevent Google from tracking you with their cookies and JavaScript. 
 
 It does not require an account, all datas are on your local storage. In case of you use FreeTube on several computers, you can't synchronize them easily. FreeTube stores datas on plain text files, loaded in memory and rewrite them on each updates.
