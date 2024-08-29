@@ -22,7 +22,7 @@ func main() {
 	case "pull":
 		pullcmd.Run()
 	default:
-		fmt.Print("You must pass a sub-command: init, watch")
+		fmt.Print("You must pass a sub-command: init, watch, pull")
 		os.Exit(1)
 	}
 }
