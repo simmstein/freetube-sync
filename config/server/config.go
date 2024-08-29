@@ -26,7 +26,7 @@ func (c *Config) Define(bindAddress, dbPath string) {
 }
 
 func InitConfig() {
-	dbPath := flag.String("d", os.Getenv("HOME")+"/.config/FreeTube/sync.sqlite", "Path to SQlite database")
+	dbPath := flag.String("d", os.Getenv("HOME")+"/freetube.sqlite", "Path to SQlite database")
 	bindAddress := flag.String("b", ":1323", "Bind address")
 	flag.Parse()
 
