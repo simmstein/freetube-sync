@@ -38,3 +38,67 @@ sequenceDiagram
         Server-->>-Client: Response OK/KO
     end
 ```
+
+## How to use it?
+
+### Server
+
+To start the server, simply run:
+
+```
+/path/to/server
+```
+
+### Client
+
+First, sync your local datas to the server:
+
+```
+/path/to/client -s http://ip.of.the.server:1323 init
+```
+
+Create `~/.bin/freetube-wrapper` and fill it with:
+
+```
+#!/bin/sh
+
+/path/to/client -s http://ip.of.the.server:1323 pull
+exec /opt/FreeTube/freetube $@
+```
+
+Then run `chmod +x ~/.bin/freetube-wrapper`.
+
+Create `~/.local/share/applications/FreeTubeSync.desktop` and fill it with:
+
+```
+[Desktop Entry]
+Type=Application
+Icon=freetube
+Terminal=false
+Exec=/home/foo/.bin/freetube-wrapper
+Name=FreeTube (synced)
+```
+
+Create `~/.config/systemd/user/freetubesync-watcher.service` and fill it with:
+
+```
+[Unit]
+Description=FreeTube Sync Watcher
+
+[Service]
+Type=simple
+StandardOutput=journal
+ExecStart=/path/to/client -s http://ip.of.the.server:1323 watch
+
+[Install]
+WantedBy=default.target
+```
+
+Then run:
+
+```
+systemctl --user daemon-reload
+systemctl --user start freetubesync-watcher.service
+```
+
+Choose `FreeTube (synced)` to open FreeTube.
