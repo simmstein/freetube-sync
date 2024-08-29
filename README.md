@@ -1,4 +1,6 @@
-# ↕️ FreeTube Sync
+![](https://deblan.gitnet.page/freetube-sync/logo.svg)
+
+# FreeTube Sync
 
 [FreeTube](https://freetubeapp.io/) is an open source desktop YouTube player built with privacy in mind. Use YouTube without advertisements and prevent Google from tracking you with their cookies and JavaScript. 
 
