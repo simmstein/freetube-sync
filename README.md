@@ -109,6 +109,8 @@ Description=FreeTube Sync Watcher
 Type=simple
 StandardOutput=journal
 ExecStart=freetube-sync-client -s http://ip.of.the.server:1323 watch
+Restart=on-failure
+RestartSec=1s
 
 [Install]
 WantedBy=default.target
