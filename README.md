@@ -31,21 +31,22 @@ At each time you want to use FreeTube, you have to pull datas from the server be
 When FreeTube is restarted, history, playlists and profiles will be updated.
 
 ```mermaid
+
 sequenceDiagram
     participant Client
     participant Server
 
     Note over Client, Server: Only once
-    Client->>+Server: Send initial history, playlists, profiles
+    Client->>+Server: Send initial history, playlists, profiles<br>ftsync-client init
     Server-->>-Client: Response OK/KO
 
     Note over Client, Server: Before launching FreeTube
-    Client->>+Server: Pull update to date history, playlists, profiles
+    Client->>+Server: Pull update to date history, playlists, profiles<br>ftsync-client pull
     Server-->>-Client: Response datas
     Client->>+Client: Update databases
 
     Note over Client, Server: While FreeTube is running
-    loop Watch local db updates
+    loop Watch local db updates<br>ftsync-client watch
         Client->>+Server: Send updated history, playlists, profiles
         Server-->>-Client: Response OK/KO
     end
