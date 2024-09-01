@@ -114,7 +114,7 @@ Description=FTSync Watcher
 [Service]
 Type=simple
 StandardOutput=journal
-ExecStart=freetube-sync-client -s http://ip.of.the.server:1323 watch
+ExecStart=ftsync-client -s http://ip.of.the.server:1323 watch
 Restart=on-failure
 RestartSec=1s
 
