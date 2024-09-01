@@ -1,14 +1,18 @@
-![](https://deblan.gitnet.page/freetube-sync/logo.svg)
+![](https://deblan.gitnet.page/ft-sync/logo.svg)
+
+![](https://img.shields.io/badge/Licence-GNU_AGPLv3-blue) ![](https://img.shields.io/badge/GO-1.23-orange)
 
 [FreeTube](https://freetubeapp.io/) is an open source desktop YouTube player built with privacy in mind. Use YouTube without advertisements and prevent Google from tracking you with their cookies and JavaScript.
 
 It does not require an account, all datas are on your local storage. In case of you use FreeTube on several computers, you can't synchronize them easily. FreeTube stores datas on plain text files, loaded in memory and rewrite them on each updates.
 
-**FreeTube Sync** tries to solve this problem.
+**FT-Sync tries to solve this problem.
+
+**⚠️  FT-Sync is not a project maintained by FreeTube Team. This project is still experimental and problems may occur. I cannot be held responsible for any possible loss of data.**
 
 ## ⚙️ What are requirements?
 
-**FreeTube Sync** requires a server accessible by all machines running FreeTube (on a local network, through a VPN or on the web).
+**FT-Sync** requires a server accessible by all machines running FreeTube (on a local network, through a VPN or on the web).
 
 ## 🧬 How does it work?
 
@@ -46,15 +50,15 @@ Go to [releases](https://gitnet.fr/deblan/freetube-sync/releases) and download t
 On the server:
 
 ```bash
-chmod +x freetube-sync-server-xxx
-sudo mv freetube-sync-server-xxx /usr/local/bin/freetube-sync-server
+chmod +x ftsync-server-xxx
+sudo mv ftsync-server-xxx /usr/local/bin/ftsync-server
 ```
 
 On clients:
 
 ```
-chmod +x freetube-sync-client-xxx
-sudo mv freetube-sync-client-xxx /usr/local/bin/freetube-sync-client
+chmod +x ftsync-client-xxx
+sudo mv ftsync-client-xxx /usr/local/bin/ftsync-client
 ```
 
 ### Server
@@ -62,7 +66,7 @@ sudo mv freetube-sync-client-xxx /usr/local/bin/freetube-sync-client
 To start the server, simply run:
 
 ```
-freetube-sync-server
+ftsync-server
 ```
 
 By default, it listens on all interfaces, port 1323.
@@ -74,7 +78,7 @@ By default, it listens on all interfaces, port 1323.
 First, sync your local datas to the server:
 
 ```
-freetube-sync-client -s http://ip.of.the.server:1323 init
+ftsync-client -s http://ip.of.the.server:1323 init
 ```
 
 Create `~/.bin/freetube-wrapper` and fill it with:
@@ -82,7 +86,7 @@ Create `~/.bin/freetube-wrapper` and fill it with:
 ```
 #!/bin/sh
 
-freetube-sync-client -s http://ip.of.the.server:1323 pull
+ftsync-client -s http://ip.of.the.server:1323 pull
 exec freetube $@
 ```
 
@@ -99,11 +103,11 @@ Exec=/home/foo/.bin/freetube-wrapper
 Name=FreeTube (synced)
 ```
 
-Create `~/.config/systemd/user/freetubesync-watcher.service` and fill it with:
+Create `~/.config/systemd/user/ftsync-watcher.service` and fill it with:
 
 ```
 [Unit]
-Description=FreeTube Sync Watcher
+Description=FTSync Watcher
 
 [Service]
 Type=simple
@@ -120,7 +124,7 @@ Then run:
 
 ```
 systemctl --user daemon-reload
-systemctl --user start freetubesync-watcher.service
+systemctl --user start ftsync-watcher.service
 ```
 
 Choose `FreeTube (synced)` to open FreeTube.
