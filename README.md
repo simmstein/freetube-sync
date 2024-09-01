@@ -1,6 +1,6 @@
 ![](https://deblan.gitnet.page/ft-sync/logo.svg)
 
-![](https://img.shields.io/badge/Licence-GNU_AGPLv3-blue) ![](https://img.shields.io/badge/GO-1.23-orange)
+![](https://img.shields.io/badge/Licence-GNU_AGPLv3-blue) ![](https://img.shields.io/badge/GO-1.23-green)
 
 [FreeTube](https://freetubeapp.io/) is an open source desktop YouTube player built with privacy in mind. Use YouTube without advertisements and prevent Google from tracking you with their cookies and JavaScript.
 
