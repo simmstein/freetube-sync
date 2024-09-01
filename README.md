@@ -8,7 +8,9 @@ It does not require an account, all datas are on your local storage. In case of 
 
 **FT-Sync** tries to solve this problem.
 
-**⚠️  FT-Sync is not a project maintained by the FreeTube Team. This project is still experimental and problems may occur. I cannot be held responsible for any possible loss of data.** Feel free to [open an issue here](https://gitnet.fr/deblan/ft-sync/issues) in case of problem.**
+## ⚠️  Disclaimer
+
+**FT-Sync is not a project maintained by the FreeTube Team. This project is still experimental and problems may occur. I cannot be held responsible for any possible loss of data.** Feel free to [open an issue here](https://gitnet.fr/deblan/ft-sync/issues) in case of problem.**
 
 ## ⚙️ What are requirements?
 
