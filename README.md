@@ -131,7 +131,7 @@ systemctl --user start ftsync-watcher.service
 
 Choose `FreeTube (synced)` to open FreeTube.
 
-## 🧪 Compilation sources
+## 🧪 Compile the sources
 
 - [GO 1.23](https://go.dev/dl/)
 - `build-essential`
