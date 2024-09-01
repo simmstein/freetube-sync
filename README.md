@@ -8,9 +8,15 @@ It does not require an account, all datas are on your local storage. In case of 
 
 **FT-Sync** tries to solve this problem.
 
-## ⚠️  Disclaimer
+## ⚠️ Disclaimer
 
 **FT-Sync is not a project maintained by the FreeTube Team. This project is still experimental and problems may occur. I cannot be held responsible for any possible loss of data.** Feel free to [open an issue here](https://gitnet.fr/deblan/ft-sync/issues) in case of problem.
+
+Before using FT-Sync, backup your datas:
+
+- `~/.config/FreeTube/history.db`
+- `~/.config/FreeTube/profiles.db`
+- `~/.config/FreeTube/playlists.db`
 
 ## ⚙️ What are requirements?
 
