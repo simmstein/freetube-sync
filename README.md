@@ -31,7 +31,6 @@ At each time you want to use FreeTube, you have to pull datas from the server be
 When FreeTube is restarted, history, playlists and profiles will be updated.
 
 ```mermaid
-
 sequenceDiagram
     participant Client
     participant Server
