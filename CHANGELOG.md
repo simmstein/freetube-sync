@@ -2,7 +2,8 @@
 
 # v1.1.0
 ## Added
-- Add custom logger (fix #1)
+- Server: add custom logger (fix #1)
+- Server: add verbose options
 ## Changed
 - The project is renamed
 
